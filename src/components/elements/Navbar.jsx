@@ -3,28 +3,24 @@ import { motion } from 'framer-motion'
 
 function Navbar() {
 
-    let parent = {
+    const wordParent = {
+        hidden: {},
         show: {
-            staggerChildren: 0.1
+            transition: {
+                staggerChildren: 0.1,
+            }
         }
     }
 
-    let child = {
+    const charVariant = {
         hidden: { opacity: 0, y: 10 },
         show: { opacity: 1, y: 0 }
     }
 
-    let navLinks = [
-        { link: "Home", href: '#' },
-        { link: "Projects", href: '#projects' },
+    const navLinks = [
+        { link: "Home", href: "#" },
+        { link: "Projects", href: "#projects" },
     ]
-
-    let charHome = [...navLinks[0].link]
-    let charProjetcs = [...navLinks[1].link]
-
-    const arrChar = [charHome, charProjetcs]
-
-    console.log(arrChar)
 
     return (
         <motion.div
@@ -42,19 +38,30 @@ function Navbar() {
             </motion.a>
 
             <motion.nav
-                className='flex items-center gap-3'
-                variants={parent}
+                className='flex items-center gap-6'
                 initial="hidden"
                 animate="show"
             >
-                {arrChar.map((char, i) => {
+                {navLinks.map((item, i) => {
+                    const chars = [...item.link]
+
                     return (
                         <motion.a
                             key={i}
-                            href="#"
-                            variants={child}
+                            href={item.href}
+                            className="flex"
+                            variants={wordParent}
+                            initial="hidden"
+                            animate="show"
                         >
-                            {char}
+                            {chars.map((c, idx) => (
+                                <motion.span
+                                    key={idx}
+                                    variants={charVariant}
+                                >
+                                    {c}
+                                </motion.span>
+                            ))}
                         </motion.a>
                     )
                 })}

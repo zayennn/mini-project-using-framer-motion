@@ -31,7 +31,7 @@ function Navbar() {
             className="fixed top-0 left-0 w-full py-3 px-5 bg-white shadow-sm flex 
                         justify-between items-center"
         >
-            <a href="#">
+            <motion.a href="#">
                 <i>
                     <motion.h1
                         className='font-bold text-2xl w-max'
@@ -39,7 +39,7 @@ function Navbar() {
                         MiniProject.
                     </motion.h1>
                 </i>
-            </a>
+            </motion.a>
 
             <motion.nav
                 className='flex items-center gap-3'
@@ -49,13 +49,13 @@ function Navbar() {
             >
                 {arrChar.map((char, i) => {
                     return (
-                        <a
+                        <motion.a
                             key={i}
-                            href={char === "Home" ? "#" : "#projects"}
+                            href="#"
                             variants={child}
                         >
                             {char}
-                        </a>
+                        </motion.a>
                     )
                 })}
             </motion.nav>
